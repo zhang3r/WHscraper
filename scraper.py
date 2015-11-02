@@ -16,7 +16,7 @@ def scraper(url):
 		for line in website:
 			line_lowercase = line.lower()
 
-			if (' sf ' in line_lowercase or 'san francisco' in line_lowercase or 'mountain view' in line_lowercase or 'sunnyvale' in line_lowercase ) and ('python' in line_lowercase or 'java ' in line_lowercase):
+			if (' sf' in line_lowercase or 'sf ' in line_lowercase or 'san francisco' in line_lowercase or 'mountain view' in line_lowercase or 'sunnyvale' in line_lowercase  or 'CA ' in line_lowercase or ' CA' in line_lowercase) and ('python' in line_lowercase or 'java ' in line_lowercase or 'java,' in line_lowercase or 'java/' in line_lowercase or 'Django' in line_lowercase):
 				if i:
 					f.write("<ul style='background-color:lightcoral'>")
 				else:
@@ -34,7 +34,7 @@ def scraper(url):
 
 def main():
 	# flags = raw_input()
-	url = "https://news.ycombinator.com/item?id=10311580"
+	url = "https://news.ycombinator.com/item?id=10492086"
 	scraper(url)
 	
 
