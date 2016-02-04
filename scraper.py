@@ -1,10 +1,11 @@
 """scraper for hacker news who's hiring post"""
-from urllib2 import urlopen
+from urllib.request import urlopen
 import unicodedata
 import codecs
 import re
 
 def scraper(url):
+
     website = [line.decode('utf-8').strip() for line in urlopen(url)]
     # or_array = []
     # and_array = []
@@ -14,7 +15,14 @@ def scraper(url):
     #   and_array+=and_arr
     i = 0
     lang_filters = []
-    ca = re.compile(' CA,')
+    ca = re.compile(' ca,')
+    ca1 = re.compile('san francisco')
+    ca6 = re.compile('los angeles')
+    ca2 = re.compile('mountain view')
+    ca3 = re.compile('san mateo')
+    ca4 = re.compile('sunnyvale')
+    ca5 = re.compile(' ca ')
+    ca7 = re.compile('santa monica')
     california = re.compile('california')
     python = re.compile('python')
     java = re.compile('java ')
@@ -23,6 +31,13 @@ def scraper(url):
     locale_filters = []
     locale_filters.append(california)
     locale_filters.append(ca)
+    locale_filters.append(ca1)
+    locale_filters.append(ca2)
+    locale_filters.append(ca3)
+    locale_filters.append(ca4)
+    locale_filters.append(ca5)
+    locale_filters.append(ca6)
+    locale_filters.append(ca7)
 
     with codecs.open('sanfran.html', 'w+', encoding='utf8') as f:
         for line in website:
@@ -39,12 +54,13 @@ def scraper(url):
                 if match:
                     loc_filters.append(True)
 
-            if any(loc_filters) or any(lan_filters):
+            if any(loc_filters):
+                #any(loc_filters) or any(lan_filters):
                 if i:
                     f.write("<ul style='background-color:lightcoral'>")
                 else:
                     f.write("<ul style='background-color: lightsteelblue'>")
-                f.write(unicodedata.normalize('NFKD', line).encode('ascii','ignore'))
+                f.write(line_lowercase)
                 f.write("</ul>")
                 f.write("<hr>")
                 i += 1
@@ -55,11 +71,12 @@ def scraper(url):
 
 
 
+
 def main():
+
     # flags = raw_input()
-    url = "https://news.ycombinator.com/item?id=10822019"
+    url = "https://news.ycombinator.com/item?id=11012044"
     scraper(url)
-    
 
 if __name__ == '__main__':
     main()
