@@ -75,7 +75,7 @@ def scraper(url):
 def main():
 
     # flags = raw_input()
-    url = "https://news.ycombinator.com/item?id=11012044"
+    url = "https://news.ycombinator.com/item?id=11202954"
     scraper(url)
 
 if __name__ == '__main__':
